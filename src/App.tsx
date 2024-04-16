@@ -3,6 +3,7 @@ import "./App.scss";
 import { BiDownload } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import React from "react";
+import logo from "../favicon.svg";
 
 function App() {
   const {
@@ -51,7 +52,11 @@ function App() {
 
   return (
     <div className="app flexCenterColumn">
-      <h1>Downlaoder</h1>
+      <div className="title-section flexCenter">
+        <img src={logo} />
+        <h1>Downloader</h1>
+        <img src={logo} />
+      </div>
       <div className="line"></div>
       <h2>Free Online Video Downloader</h2>
       <h3>Download videos for free || Youtube, Facebook, Instagram, etc...</h3>

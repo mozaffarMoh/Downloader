@@ -61,6 +61,19 @@
         }
     }
 
+
+    .slider-downloaders {
+        width: 50%;
+        height: 400px;
+        margin-top: 30px;
+        border-radius: 20px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
 }
 
 @keyframes moveTitle {
@@ -88,6 +101,11 @@
 
         .container {
             width: 80%;
+        }
+
+        .slider-downloaders {
+            width: 80%;
+            height: 300px;
         }
     }
 }

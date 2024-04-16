@@ -4,6 +4,9 @@ import { BiDownload } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import React from "react";
 import logo from "../favicon.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { imagesArray } from "./imagesArray";
+import { Autoplay } from "swiper/modules";
 
 function App() {
   const {
@@ -54,7 +57,7 @@ function App() {
     <div className="app flexCenterColumn">
       <div className="title-section flexCenter">
         <img src={logo} />
-        <h1>Downloader</h1>
+        <h1 onClick={() => window.location.reload()}>Downloader</h1>
         <img src={logo} />
       </div>
       <div className="line"></div>
@@ -95,6 +98,24 @@ function App() {
           <BiDownload size={25} />
         </Button>
       </form>
+
+      <Swiper
+        modules={[Autoplay]}
+        slidesPerView={1}
+        className="slider-downloaders"
+        autoplay={{ delay: 4000 }}
+        speed={2000}
+        loop={true}
+        loopAdditionalSlides={1}
+      >
+        {imagesArray.map((item: any, index: number) => {
+          return (
+            <SwiperSlide key={index}>
+              <img src={item} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </div>
   );
 }

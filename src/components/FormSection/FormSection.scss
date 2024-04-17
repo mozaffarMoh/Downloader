@@ -1,0 +1,28 @@
+.form-section {
+
+    width: 50%;
+
+    button {
+        font-size: 14px;
+        margin-top: 2px;
+    }
+
+    .error-message {
+        align-self: flex-start;
+        font-size: 15px;
+        margin: 3px 10px 20px 10px;
+        color: rgb(172, 11, 11);
+        overflow-y: hidden;
+    }
+}
+
+
+
+
+@media (max-width : 600px) {
+
+    .form-section {
+        width: 80%;
+    }
+
+}

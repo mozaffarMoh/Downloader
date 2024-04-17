@@ -1,0 +1,23 @@
+.title-description {
+    width: 100%;
+
+    .line {
+        width: 70%;
+        background-color: black;
+        height: 1px;
+        margin: 20px;
+    }
+
+    h3 {
+        margin: 20px;
+    }
+}
+
+
+@media (max-width : 600px) {
+    .title-description {
+        .line {
+            width: 90%;
+        }
+    }
+}

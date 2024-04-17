@@ -4,15 +4,20 @@ import {
   TitleDescription,
   TitleSection,
   Slider,
-} from "../../components";
+  Footer,
+} from "../../sections";
+import { LineSpacer } from "../../components";
 
 const Home = () => {
   return (
     <div className="home flexCenterColumn">
       <TitleSection />
+      <LineSpacer />
       <TitleDescription />
       <FormSection />
       <Slider />
+      <LineSpacer />
+      <Footer />
     </div>
   );
 };

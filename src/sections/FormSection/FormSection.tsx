@@ -1,8 +1,9 @@
-import { Button, TextField } from "@mui/material";
+import { Button, LinearProgress, TextField } from "@mui/material";
 import "./FormSection.scss";
 import { BiDownload } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import React from "react";
+import { Loading } from "../../components";
 
 function FormSection() {
   const {
@@ -14,9 +15,11 @@ function FormSection() {
   const buttonRef: any = React.useRef(null);
   const [link, setLink] = React.useState("");
   const [success, setSuccess] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   /* Check Link */
   const handleCheckLink = () => {
+    setLoading(true);
     setSuccess(true);
   };
 
@@ -25,6 +28,7 @@ function FormSection() {
     if (success) {
       setLink("");
       setSuccess(false);
+      setLoading(false);
     }
   }, [success]);
 
@@ -54,6 +58,7 @@ function FormSection() {
       className="form-section flexCenterColumn"
       onSubmit={handleSubmit(handleCheckLink)}
     >
+      {loading && <Loading />}
       <TextField
         variant="outlined"
         color="error"

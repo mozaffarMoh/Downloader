@@ -1,4 +1,4 @@
-import { Button, LinearProgress, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import "./FormSection.scss";
 import { BiDownload } from "react-icons/bi";
 import { useForm } from "react-hook-form";

@@ -2,11 +2,7 @@ import { LinearProgress } from "@mui/material";
 import "./Loading.scss";
 
 const Loading = () => {
-  return (
-    <div className="loading-container">
-      <LinearProgress color="error" className="linear-progress" />
-    </div>
-  );
+  return <LinearProgress color="error" className="linear-progress" />;
 };
 
 export default Loading;

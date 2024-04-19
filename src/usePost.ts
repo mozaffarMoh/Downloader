@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { set } from "react-hook-form";
 
 const usePost = (endPoint: string, body: any) => {
     const [data, setData] = React.useState(null);

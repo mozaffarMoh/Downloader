@@ -9,7 +9,7 @@ const usePost = (endPoint: string, body: any) => {
     const postFunc = () => {
         setLoading(true)
 
-        axios.post('https://downloader-api-lhwy.onrender.com/' + endPoint,
+        axios.post('https://downloader-api-y5lo.onrender.com/' + endPoint,
             body,
             { headers: { "Content-Type": 'application/json' } }
         )

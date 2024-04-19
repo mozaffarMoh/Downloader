@@ -14,9 +14,20 @@ function FormSection() {
     trigger,
   }: any = useForm();
   const buttonRef: any = React.useRef(null);
-  const [link, setLink] = React.useState("");
-  const body = { url: link };
-  const [data, handleCheckLink, loading] = usePost("video_info", body);
+  const [userLink, setUserLink] = React.useState("");
+  const [videoLink, setVideoLink] = React.useState("");
+  const body = { url: userLink };
+  const [data, checkLinkPost, loading, success]: any = usePost("video", body);
+
+  const handleCheckLink = () => {
+    checkLinkPost();
+  };
+
+  React.useEffect(() => {
+    if (success) {
+      setVideoLink("");
+    }
+  }, [success]);
 
   /* Check link when press on Enter key */
   React.useEffect(() => {
@@ -38,10 +49,8 @@ function FormSection() {
     };
   }, [handleSubmit, trigger]);
 
-  console.log(data);
-
   return (
-    <div className="form-section-container">
+    <div className="form-section-container flexCenterColumn">
       <form
         className="form-section flexCenterColumn"
         onSubmit={handleSubmit(handleCheckLink)}
@@ -51,15 +60,15 @@ function FormSection() {
           color="error"
           fullWidth
           label="Paste your link here"
-          value={link}
-          {...register("link", {
+          value={userLink}
+          {...register("userLink", {
             required: "Please paste your link !!",
             /*      pattern: {
             value: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
             message: "Link should be a website link !!",
           }, */
           })}
-          onChange={(e: any) => setLink(e.target.value)}
+          onChange={(e: any) => setUserLink(e.target.value)}
         />
         {errors.link && (
           <div className="error-message">{errors.link.message}</div>
@@ -78,7 +87,13 @@ function FormSection() {
       </form>
 
       {loading && <Loading />}
-      {data && <VideoDetails data={data} />}
+      {data && (
+        <VideoDetails
+          data={data}
+          videoLink={videoLink}
+          setVideoLink={setVideoLink}
+        />
+      )}
     </div>
   );
 }

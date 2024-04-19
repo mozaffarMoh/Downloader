@@ -12,9 +12,15 @@
 
 
 
+@media (max-width : 900px) {
+    .slider {
+        width: 60%;
+        height: 300px;
+    }
+}
+
 @media (max-width : 600px) {
     .slider {
         width: 80%;
-        height: 300px;
     }
 }

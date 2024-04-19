@@ -5,9 +5,12 @@ const usePost = (endPoint: string, body: any) => {
     const [data, setData] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState("");
 
     const postFunc = () => {
         setLoading(true)
+        setErrorMessage("")
+        setData(null)
 
         axios.post('https://downloader-api-y5lo.onrender.com/' + endPoint,
             body,
@@ -22,15 +25,20 @@ const usePost = (endPoint: string, body: any) => {
                 }, 4000);
             })
             .catch((err: any) => {
-                console.log(err)
+                let message = err?.response?.data?.error
                 setLoading(false)
+                if (message.startsWith("Video id")) {
+                    setErrorMessage("This URL is not found")
+                } else {
+                    setErrorMessage(message)
+                }
             });
 
 
 
     }
 
-    return [data, postFunc, loading, success];
+    return [data, postFunc, loading, success, errorMessage];
 
 }
 

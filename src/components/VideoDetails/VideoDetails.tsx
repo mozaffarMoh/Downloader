@@ -3,8 +3,9 @@ import "./VideoDetails.scss";
 import FormControl from "@mui/material/FormControl";
 import { Button, MenuItem, Select } from "@mui/material";
 
-function VideoDetails({ data, videoLink, setVideoLink }: any) {
+function VideoDetails({ data, hideQualityLabel, setHideQualityLabel }: any) {
   let [time, setTime] = React.useState("");
+  let [videoLink, setVideoLink] = React.useState("");
 
   /* Adjust video time */
   React.useEffect(() => {
@@ -21,6 +22,11 @@ function VideoDetails({ data, videoLink, setVideoLink }: any) {
     setTime(hours + ":" + minutes + ":" + remainingSeconds);
   }, [data]);
 
+  const handleSelectQuality = (e: any) => {
+    setHideQualityLabel(true);
+    setVideoLink(e.target.value);
+  };
+
   return (
     <div className="video-details flexCenterColumn">
       <img
@@ -35,10 +41,11 @@ function VideoDetails({ data, videoLink, setVideoLink }: any) {
       <span>{time}</span>
       <br />
       <FormControl fullWidth>
-        {!videoLink && <label>Select quality</label>}
+        {!hideQualityLabel && <label>Select quality</label>}
         <Select
           className="select-quality"
-          onChange={(e: any) => setVideoLink(e.target.value)}
+          onChange={handleSelectQuality}
+          value={videoLink}
         >
           {data.formats.map((item: any, index: number) => {
             return (
@@ -54,6 +61,7 @@ function VideoDetails({ data, videoLink, setVideoLink }: any) {
       <br />
       <Button
         variant="contained"
+        className="download-button"
         color="warning"
         fullWidth
         target="_blank"

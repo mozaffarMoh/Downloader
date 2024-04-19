@@ -15,9 +15,12 @@ function FormSection() {
   }: any = useForm();
   const buttonRef: any = React.useRef(null);
   const [userLink, setUserLink] = React.useState("");
-  const [videoLink, setVideoLink] = React.useState("");
+  const [hideQualityLabel, setHideQualityLabel] = React.useState(false);
   const body = { url: userLink };
-  const [data, checkLinkPost, loading, success]: any = usePost("video", body);
+  const [data, checkLinkPost, loading, success, errorMessage]: any = usePost(
+    "video",
+    body
+  );
 
   const handleCheckLink = () => {
     checkLinkPost();
@@ -25,7 +28,7 @@ function FormSection() {
 
   React.useEffect(() => {
     if (success) {
-      setVideoLink("");
+      setHideQualityLabel(false);
     }
   }, [success]);
 
@@ -63,15 +66,11 @@ function FormSection() {
           value={userLink}
           {...register("userLink", {
             required: "Please paste your link !!",
-            /*      pattern: {
-            value: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
-            message: "Link should be a website link !!",
-          }, */
           })}
           onChange={(e: any) => setUserLink(e.target.value)}
         />
-        {errors.link && (
-          <div className="error-message">{errors.link.message}</div>
+        {errors.userLink && (
+          <div className="error-message">{errors.userLink.message}</div>
         )}
         <Button
           ref={buttonRef}
@@ -87,11 +86,14 @@ function FormSection() {
       </form>
 
       {loading && <Loading />}
+      {errorMessage && (
+        <p className="error-message-api">Error : {errorMessage}</p>
+      )}
       {data && (
         <VideoDetails
           data={data}
-          videoLink={videoLink}
-          setVideoLink={setVideoLink}
+          hideQualityLabel={hideQualityLabel}
+          setHideQualityLabel={setHideQualityLabel}
         />
       )}
     </div>

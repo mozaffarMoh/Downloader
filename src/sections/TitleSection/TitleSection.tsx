@@ -8,7 +8,9 @@ function TitleSection() {
   return (
     <div className="title-section flexCenter">
       <img src={logo} />
-      <h1 onClick={() => navigate("/")}>Downloader</h1>
+      <div className="title-text flexCenter">
+        <p onClick={() => navigate("/")}>Downloader</p>
+      </div>
       <img src={logo} />
     </div>
   );

@@ -2,21 +2,26 @@
 
 .title-section {
     width: 100%;
-    height: 110px;
+    height: 100px;
 
-    h1 {
-        font-size: 50px;
-        margin: 30px 0px 0px;
-        color: rgb(184, 77, 77);
-        font-family: "Protest Riot";
-        font-style: italic;
-        cursor: pointer;
-        transition: all 1.5s ease;
-        animation: titleMove 2s alternate infinite;
+    .title-text {
+        width: 320px;
+        overflow: hidden;
+        margin-top: 30px;
 
-        &:hover {
-            color: rgb(241, 223, 223);
-            text-shadow: 5px 5px 10px rgb(226, 71, 71);
+        p {
+            font-size: 50px;
+            color: rgb(184, 77, 77);
+            font-family: "Protest Riot";
+            font-style: italic;
+            cursor: pointer;
+            transition: all 1.5s ease;
+            animation: titleMove 1s alternate infinite;
+
+            &:hover {
+                color: rgb(241, 223, 223);
+                text-shadow: 5px 5px 10px rgb(226, 71, 71);
+            }
         }
     }
 
@@ -41,20 +46,23 @@
 }
 
 @media (max-width : 600px) {
-
     .title-section {
-        h1 {
-            font-size: 40px;
+        .title-text {
+            width: 250px;
+
+            p {
+                font-size: 33px;
+            }
         }
     }
 
     @keyframes titleMove {
         0% {
-            font-size: 40px;
+            font-size: 33px;
         }
-    
+
         100% {
-            font-size: 44px;
+            font-size: 35px;
         }
     }
 

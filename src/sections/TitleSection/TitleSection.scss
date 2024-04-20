@@ -18,6 +18,7 @@
             transition: all 1.5s ease;
             animation: titleMove 1s alternate infinite;
 
+
             &:hover {
                 color: rgb(241, 223, 223);
                 text-shadow: 5px 5px 10px rgb(226, 71, 71);
@@ -37,10 +38,12 @@
 
 @keyframes titleMove {
     0% {
+        position: absolute;
         font-size: 50px;
     }
 
     100% {
+        position: absolute;
         font-size: 53px;
     }
 }

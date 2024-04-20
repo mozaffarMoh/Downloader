@@ -25,9 +25,9 @@ const usePost = (endPoint: string, body: any) => {
                 }, 4000);
             })
             .catch((err: any) => {
-                let message = err?.response?.data?.error
+                let message:any = err?.response?.data?.error
                 setLoading(false)
-                if (message.startsWith("Video id")) {
+                if (message?.startsWith("Video id")) {
                     setErrorMessage("This URL is not found")
                 } else {
                     setErrorMessage(message)

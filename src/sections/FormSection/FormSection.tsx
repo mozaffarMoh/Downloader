@@ -3,7 +3,7 @@ import "./FormSection.scss";
 import { BiDownload } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import React from "react";
-import { Loading, VideoDetails } from "../../components";
+import { Loading, VideoDetails, YouTubePlayer } from "../../components";
 import usePost from "../../usePost";
 
 function FormSection() {
@@ -16,6 +16,7 @@ function FormSection() {
   const buttonRef: any = React.useRef(null);
   const [userLink, setUserLink] = React.useState("");
   const [hideQualityLabel, setHideQualityLabel] = React.useState(false);
+  const [showPlayer, setShowPlayer] = React.useState(false);
   const body = { url: userLink };
   const [data, handleCheckLink, loading, success, errorMessage]: any = usePost(
     "video",
@@ -77,16 +78,17 @@ function FormSection() {
       </form>
 
       {loading && <Loading />}
-      {errorMessage && (
-        <p className="error-message-api">Error : {errorMessage}</p>
-      )}
+      {errorMessage && <p className="error-message-api">{errorMessage}</p>}
       {data && (
         <VideoDetails
           data={data}
           hideQualityLabel={hideQualityLabel}
           setHideQualityLabel={setHideQualityLabel}
+          setShowPlayer={setShowPlayer}
         />
       )}
+      <script src="https://www.youtube.com/iframe_api"></script>
+      {showPlayer && <YouTubePlayer videoId={data?.videoDetails?.videoId} />}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import "./VideoDetails.scss";
 import FormControl from "@mui/material/FormControl";
 import { Button, MenuItem, Select } from "@mui/material";
 
-function VideoDetails({ data, hideQualityLabel, setHideQualityLabel }: any) {
+function VideoDetails({ data, hideQualityLabel, setHideQualityLabel,setShowPlayer }: any) {
   let [time, setTime] = React.useState("");
   let [videoLink, setVideoLink] = React.useState("");
 
@@ -68,6 +68,15 @@ function VideoDetails({ data, hideQualityLabel, setHideQualityLabel }: any) {
         href={videoLink}
       >
         Download
+      </Button>
+      <Button
+        variant="contained"
+        fullWidth
+        className="watch-here-button"
+        color="secondary"
+        onClick={() => setShowPlayer(true)}
+      >
+        Watch video Online
       </Button>
     </div>
   );

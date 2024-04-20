@@ -3,9 +3,16 @@ import "./VideoDetails.scss";
 import FormControl from "@mui/material/FormControl";
 import { Button, MenuItem, Select } from "@mui/material";
 
-function VideoDetails({ data, hideQualityLabel, setHideQualityLabel,setShowPlayer }: any) {
+function VideoDetails({
+  data,
+  hideQualityLabel,
+  setHideQualityLabel,
+  setShowPlayer,
+}: any) {
   let [time, setTime] = React.useState("");
   let [videoLink, setVideoLink] = React.useState("");
+  let [showErrorQualityMessage, setShowErrorQualityMessage] =
+    React.useState(false);
 
   /* Adjust video time */
   React.useEffect(() => {
@@ -22,9 +29,18 @@ function VideoDetails({ data, hideQualityLabel, setHideQualityLabel,setShowPlaye
     setTime(hours + ":" + minutes + ":" + remainingSeconds);
   }, [data]);
 
+  /* Handle select quality */
   const handleSelectQuality = (e: any) => {
     setHideQualityLabel(true);
     setVideoLink(e.target.value);
+    setShowErrorQualityMessage(false);
+  };
+
+  /* Handle check quality */
+  const handleCheckQuality = () => {
+    if (!videoLink) {
+      setShowErrorQualityMessage(true);
+    }
   };
 
   return (
@@ -58,6 +74,11 @@ function VideoDetails({ data, hideQualityLabel, setHideQualityLabel,setShowPlaye
           })}
         </Select>
       </FormControl>
+      {!videoLink && showErrorQualityMessage && (
+        <p className="error-quality-message">
+          Please select a quality to download !!
+        </p>
+      )}
       <br />
       <Button
         variant="contained"
@@ -66,6 +87,7 @@ function VideoDetails({ data, hideQualityLabel, setHideQualityLabel,setShowPlaye
         fullWidth
         target="_blank"
         href={videoLink}
+        onClick={handleCheckQuality}
       >
         Download
       </Button>

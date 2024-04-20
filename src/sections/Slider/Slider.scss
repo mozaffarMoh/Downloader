@@ -1,6 +1,6 @@
 .slider {
-    width: 60%;
-    height: 450px;
+    width: 50%;
+    height: 400px;
     margin-top: 30px;
     border-radius: 20px;
 
@@ -10,6 +10,14 @@
     }
 }
 
+
+
+@media (max-width : 800px) {
+    .slider {
+        width: 65%;
+        height: 350px;
+    }
+}
 
 
 @media (max-width : 600px) {
